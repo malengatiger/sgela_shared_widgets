@@ -10,7 +10,7 @@ import 'package:sgela_shared_widgets/util/widget_prefs.dart';
 import '../util/gaps.dart';
 import '../util/styles.dart';
 
-
+/// Shared Color selector that saves selecyed color in shared prefs
 class ColorGallery extends StatefulWidget {
   const ColorGallery(
       {super.key, required this.prefs, required this.colorWatcher});
