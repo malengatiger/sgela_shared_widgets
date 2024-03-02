@@ -8,13 +8,11 @@ import '../util/styles.dart';
 
 
 class OrgLogoWidget extends StatelessWidget {
-  const OrgLogoWidget({super.key, this.branding, this.height, this.name, this.width, this.logoUrl});
+  const OrgLogoWidget({super.key, this.branding, this.height, this.width,});
 
   final Branding? branding;
   final double? height, width;
-  final String? name;
 
-  final String? logoUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +28,23 @@ class OrgLogoWidget extends StatelessWidget {
       if (branding!.splashUrl != null) {
         splashUrl = branding!.splashUrl!;
       }
+    } else {
+      branding = Branding(organizationId: 0,
+          id: 0,
+          date: 'date',
+          logoUrl: mLogoUrl,
+          splashUrl: splashUrl,
+          tagLine: null,
+          organizationName: defaultName,
+          organizationUrl: mLogoUrl,
+          splashTimeInSeconds:
+          5,
+          colorIndex: 0,
+          boxFit: 0,
+          activeFlag: true);
     }
     return SizedBox(
-      height: height == null ? 36 : height!,
+      height: height == null ? 28 : height!,
       // width: width == null? 400: width!,
       child: Row(
         children: [
@@ -44,29 +56,21 @@ class OrgLogoWidget extends StatelessWidget {
               // width: height == null ? 64*4 : (height! * 4),
             ),
           ),
+
           gapW16,
-          name == null
-              ? Flexible(
-                  child: Text(
-                    branding == null
-                        ? defaultName
-                        : '${branding!.organizationName}',
-                    style: myTextStyle(context, Theme.of(context).primaryColor,
-                        16, FontWeight.w900),
-                  ),
-                )
-              : Flexible(
-                  child: Text(
-                    name == null
-                        ? defaultName
-                        : name!,
-                    style: myTextStyle(context, Theme.of(context).primaryColor,
-                        16, FontWeight.w900),
-                  ),
-                ),
+          Flexible(
+            child: Text(
+              '${branding!.organizationName}',
+              style: myTextStyle(context, Theme
+                  .of(context)
+                  .primaryColor,
+                  16, FontWeight.w900),
+            ),
+          ),
         ],
       ),
     );
   }
+
   static const defaultName = 'SgelaAI Inc.';
 }
