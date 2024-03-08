@@ -77,8 +77,8 @@ class _BusyIndicatorState extends State<BusyIndicator> {
     }
 
     if (widget.showTimerOnly != null && widget.showTimerOnly!) {
-      width = 64;
-      height = 64;
+      width = 80;
+      height = 80;
       return SizedBox(
         height: height,
         width: width,
@@ -101,13 +101,15 @@ class _BusyIndicatorState extends State<BusyIndicator> {
                     ),
                   ),
                   gapH8,
-                  Text(
-                    elapsedTime,
-                    style: myTextStyle(
-                      context,
-                      Theme.of(context).primaryColor,
-                      widget.textSize!,
-                      FontWeight.normal,
+                  Flexible(
+                    child: Text(
+                      elapsedTime,
+                      style: myTextStyle(
+                        context,
+                        Theme.of(context).primaryColor,
+                        widget.textSize!,
+                        FontWeight.normal,
+                      ),
                     ),
                   ),
                 ],
