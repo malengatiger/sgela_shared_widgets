@@ -1,48 +1,37 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sgela_services/data/branding.dart';
-import 'package:sgela_services/sgela_util/environment.dart';
 
 import '../util/gaps.dart';
 import '../util/styles.dart';
 
-
 class OrgLogoWidget extends StatelessWidget {
-  const OrgLogoWidget({super.key, this.branding, this.height, this.width,});
+  const OrgLogoWidget({
+    super.key,
+    this.branding,
+    this.height,
+    this.width,
+  });
 
   final Branding? branding;
   final double? height, width;
 
-
   @override
   Widget build(BuildContext context) {
-    var mLogoUrl = ChatbotEnvironment.sgelaLogoUrl;
-    var splashUrl = ChatbotEnvironment.sgelaSplashUrl;
-    if (logoUrl != null) {
-      mLogoUrl = logoUrl!;
+    if (branding == null) {
+      return DefaultLogo(
+        height: height,
+      );
     }
-    if (branding != null) {
-      if (branding!.logoUrl != null) {
-        mLogoUrl = branding!.logoUrl!;
-      }
-      if (branding!.splashUrl != null) {
-        splashUrl = branding!.splashUrl!;
-      }
-    } else {
-      branding = Branding(organizationId: 0,
-          id: 0,
-          date: 'date',
-          logoUrl: mLogoUrl,
-          splashUrl: splashUrl,
-          tagLine: null,
-          organizationName: defaultName,
-          organizationUrl: mLogoUrl,
-          splashTimeInSeconds:
-          5,
-          colorIndex: 0,
-          boxFit: 0,
-          activeFlag: true);
+    String? name = '';
+    if (branding!.organizationName != null) {
+      name = branding!.organizationName;
     }
+    if (name!.isEmpty) {
+      name = DefaultLogo.defaultName;
+    }
+
+    String? mLogoUrl = branding!.logoUrl!;
     return SizedBox(
       height: height == null ? 28 : height!,
       // width: width == null? 400: width!,
@@ -56,15 +45,12 @@ class OrgLogoWidget extends StatelessWidget {
               // width: height == null ? 64*4 : (height! * 4),
             ),
           ),
-
           gapW16,
           Flexible(
             child: Text(
-              '${branding!.organizationName}',
-              style: myTextStyle(context, Theme
-                  .of(context)
-                  .primaryColor,
-                  16, FontWeight.w900),
+              name,
+              style: myTextStyle(
+                  context, Theme.of(context).primaryColor, 16, FontWeight.w900),
             ),
           ),
         ],
@@ -72,5 +58,38 @@ class OrgLogoWidget extends StatelessWidget {
     );
   }
 
+}
+
+class DefaultLogo extends StatelessWidget {
+  const DefaultLogo({super.key, this.height, this.sponsorName});
+
+  final double? height;
+  final String? sponsorName;
   static const defaultName = 'SgelaAI Inc.';
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height == null ? 28 : height!,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Image.asset(
+              'assets/sgela_logo.png',
+              height: height == null ? 36 : height!,
+            ),
+          ),
+          gapW16,
+          Flexible(
+            child: Text(
+              sponsorName == null? defaultName: sponsorName!,
+              style: myTextStyle(
+                  context, Theme.of(context).primaryColor, 16, FontWeight.w900),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

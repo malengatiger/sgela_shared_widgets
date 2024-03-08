@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:sgela_services/sgela_util/dark_light_control.dart';
 import 'package:sgela_services/sgela_util/sponsor_prefs.dart';
 import 'package:sgela_services/sgela_util/functions.dart';
-import 'package:sgela_shared_widgets/util/widget_prefs.dart';
+import 'package:sgela_shared_widgets/widgets/sponsored_by.dart';
 
 import '../util/gaps.dart';
 import '../util/styles.dart';
@@ -13,9 +13,8 @@ import '../util/styles.dart';
 /// Shared Color selector that saves selecyed color in shared prefs
 class ColorGallery extends StatefulWidget {
   const ColorGallery(
-      {super.key, required this.prefs, required this.colorWatcher});
+      {super.key, required this.colorWatcher});
 
-  final WidgetPrefs prefs;
   final ColorWatcher colorWatcher;
 
   @override
@@ -41,7 +40,6 @@ class ColorGalleryState extends State<ColorGallery> {
     colorIndex = prefs.getColorIndex();
   }
   void _setColorIndex(int index) {
-    widget.prefs.saveColorIndex(index);
     widget.colorWatcher.setColor(index);
     prefs.saveColorIndex(index);
 
@@ -82,6 +80,30 @@ class ColorGalleryState extends State<ColorGallery> {
                             FontWeight.bold) : myTextStyleMedium(context),
                       ),
                       gapH16,
+                      Card(
+                        elevation: 8,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RadioMenuButton(
+                                value: 0,
+                                groupValue: groupValue,
+                                onChanged: (c) {
+                                  pp('on DARK radio changed c:$c');
+                                  _setMode(c!);
+                                },
+                                child: const Text('Dark Mode')),
+                            RadioMenuButton(
+                                value: 1,
+                                groupValue: groupValue,
+                                onChanged: (c) {
+                                  pp('on LIGHT radio changed c:$c');
+                                  _setMode(c!);
+                                },
+                                child: const Text('Light Mode')),
+                          ],
+                        ),
+                      ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
@@ -113,30 +135,7 @@ class ColorGalleryState extends State<ColorGallery> {
                               }),
                         ),
                       ),
-                      Card(
-                        elevation: 8,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RadioMenuButton(
-                                value: 0,
-                                groupValue: groupValue,
-                                onChanged: (c) {
-                                  pp('on DARK radio changed c:$c');
-                                  _setMode(c!);
-                                },
-                                child: const Text('Dark Mode')),
-                            RadioMenuButton(
-                                value: 1,
-                                groupValue: groupValue,
-                                onChanged: (c) {
-                                  pp('on LIGHT radio changed c:$c');
-                                  _setMode(c!);
-                                },
-                                child: const Text('Light Mode')),
-                          ],
-                        ),
-                      )
+                      const SponsoredBy()
                     ],
                   ),
                 ),
@@ -146,7 +145,7 @@ class ColorGalleryState extends State<ColorGallery> {
     );
   }
 
-  int groupValue = -1;
+  int groupValue = 0;
 
   void _setMode(int c) {
     pp('...mode is $c');
