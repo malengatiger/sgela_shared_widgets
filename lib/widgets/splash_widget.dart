@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sgela_shared_widgets/util/styles.dart';
-
 class SplashWidget extends StatefulWidget {
   const SplashWidget({super.key});
 
@@ -14,36 +13,32 @@ class _SplashWidgetState extends State<SplashWidget> {
   @override
   void initState() {
     super.initState();
-    _performSetup();
   }
 
   String? message;
 
-  void _performSetup() async {
-
-  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: AnimatedContainer(
         // width: 300, height: 300,
         curve: Curves.easeInOutCirc,
         duration: const Duration(milliseconds: 3000),
         child: Card(
-          elevation: 24.0,
+          elevation: 16.0,
           // shape: getRoundedBorder(radius: 16),
           child: Column(
             children: [
               const SizedBox(
-                height: 24,
+                height: 16,
               ),
               Center(
                 child: Image.asset(
-                  'assets/sgela_logo.png',
-                  height: 64,
-                  width: 64,
+                  'assets/sgela_logo2.png',
+                  height: 96,
+                  width: 96,
                 ),
               ),
               const SizedBox(
@@ -65,7 +60,7 @@ class _SplashWidgetState extends State<SplashWidget> {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 12,
               ),
             ],
           ),
