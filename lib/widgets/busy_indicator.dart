@@ -13,7 +13,7 @@ class BusyIndicator extends StatefulWidget {
   final bool? showClock;
   final bool? showTimerOnly;
 
-  final double? textSize;
+  final double? textSize, width, height;
 
   const BusyIndicator(
       {super.key,
@@ -23,7 +23,8 @@ class BusyIndicator extends StatefulWidget {
       this.showClock = true,
       this.showElapsedTime = true,
       this.showTimerOnly = false,
-      this.textSize = 14});
+      this.width = 300,
+      this.textSize = 14, this.height});
 
   @override
   State<BusyIndicator> createState() => _BusyIndicatorState();
@@ -65,25 +66,25 @@ class _BusyIndicatorState extends State<BusyIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    var height = 300.0;
-    var width = 400.0;
+    var height = widget.height ?? 300.0;
+    var width = widget.width ?? 300.0;
 
     var show = false;
     if (widget.showClock != null) {
-      if (widget.showClock != null) {
-        height = 420.0;
+      if (widget.showClock!) {
+        height = widget.height == null? 440: widget.height! + 120;
         show = widget.showClock!;
       }
     }
 
     if (widget.showTimerOnly != null && widget.showTimerOnly!) {
-      width = 80;
-      height = 80;
+      width = widget.width == null ? 100 : widget.width!;
+      height = widget.height ?? 100;
       return SizedBox(
         height: height,
         width: width,
         child: Card(
-          elevation: widget.elevation == null? 8: widget.elevation!,
+          elevation: widget.elevation == null ? 8 : widget.elevation!,
           // color: Colors.transparent,
           child: Padding(
             padding: const EdgeInsets.all(2.0),
