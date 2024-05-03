@@ -66,7 +66,7 @@ class _BusyIndicatorState extends State<BusyIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    var height = widget.height ?? 300.0;
+    var height = widget.height ?? 240.0;
     var width = widget.width ?? 300.0;
 
     var show = false;
@@ -136,6 +136,7 @@ class _BusyIndicatorState extends State<BusyIndicator> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    gapH16,
                     const SizedBox(
                       height: 16,
                       width: 16,
@@ -149,7 +150,7 @@ class _BusyIndicatorState extends State<BusyIndicator> {
                         ? gapW8
                         : Text(widget.caption!,
                             style: myTextStyleSmall(context)),
-                    gapH32,
+                    gapH16,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
