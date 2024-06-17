@@ -9,8 +9,7 @@ class SubjectFilterWidget extends StatefulWidget {
   final Function(Subject) onSelected;
 
   const SubjectFilterWidget(
-      {Key? key, required this.subjects, required this.onSelected})
-      : super(key: key);
+      {super.key, required this.subjects, required this.onSelected});
 
   @override
   _SubjectFilterWidgetState createState() => _SubjectFilterWidgetState();
@@ -62,7 +61,7 @@ class _SubjectFilterWidgetState extends State<SubjectFilterWidget> {
                 onChanged: (m) {
                   filterSubjects(m);
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Search',
                 ),
               ),
@@ -75,9 +74,9 @@ class _SubjectFilterWidgetState extends State<SubjectFilterWidget> {
                   return DropdownMenuItem<Subject>(
                     value: subject,
                     child: Padding(
-                        child: Text('${subject.title!}',
-                            style: myTextStyleSmall(context)),
-                        padding: EdgeInsets.only(left:16,right:16,))
+                        padding: const EdgeInsets.only(left:16,right:16,),
+                        child: Text(subject.title!,
+                            style: myTextStyleSmall(context)))
                   );
                 }).toList(),
                 onChanged: (selectedSubject) {

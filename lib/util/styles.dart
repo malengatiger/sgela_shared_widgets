@@ -331,7 +331,7 @@ TextStyle myTextStyleHeader(BuildContext context) {
 
 TextStyle myTextStyleLargePrimaryColor(BuildContext context) {
   return GoogleFonts.roboto(
-      textStyle: Theme.of(context).textTheme.headlineLarge,
+      textStyle: Theme.of(context).textTheme.headlineMedium,
       fontWeight: FontWeight.w900,
       color: Theme.of(context).primaryColor);
 }

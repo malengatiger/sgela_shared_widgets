@@ -9,7 +9,6 @@ import 'package:get_it/get_it.dart';
 import 'package:sgela_services/sgela_util/prefs.dart';
 import 'package:sgela_shared_widgets/util/gaps.dart';
 import 'package:sgela_shared_widgets/util/styles.dart';
-import 'package:sgela_shared_widgets/util/widget_prefs.dart';
 import 'package:sgela_shared_widgets/util/dialogs.dart';
 
 class SponsoredBy extends StatefulWidget {

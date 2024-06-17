@@ -65,19 +65,19 @@ class DefaultLogo extends StatelessWidget {
 
   final double? height;
   final String? sponsorName;
-  static const defaultName = 'SgelaAI Inc.';
+  static const defaultName = 'SgelaAI';
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height == null ? 28 : height!,
+      height: height == null ? 48 : height!,
       child: Row(
         children: [
           Padding(
             padding: const EdgeInsets.all(2.0),
             child: Image.asset(
-              'assets/sgela_logo.png',
-              height: height == null ? 36 : height!,
+              'assets/sgela_logo_clear.png',
+              height: height == null ? 48 : height!,
             ),
           ),
           gapW16,
