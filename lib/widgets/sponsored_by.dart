@@ -78,7 +78,7 @@ class _SponsoredByState extends State<SponsoredBy> {
             sponsorOrganization == null ? const Text('SgelaAI') : Text('${sponsorOrganization!.name}'),
             gapW8,
             branding == null
-                ? gapW4
+                ? Image.asset('assets/sgela_logo_clear.png', height: 36,)
                 : Card(
                     elevation: 8,
                     child: CachedNetworkImage(
